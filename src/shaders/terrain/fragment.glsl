@@ -19,6 +19,10 @@ void main() {
     float sandMix = step(- 0.1, vPosition.y);
     color = mix(color, uColorSand, sandMix);
 
+    // Grass
+    float grassMix = step(- 0.06, vPosition.y);
+    color = mix(color, uColorGrass, grassMix);
+
     // Final color
     csm_DiffuseColor = vec4(color, 1.0);
 }
