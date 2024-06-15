@@ -3,6 +3,8 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 import { SUBTRACTION, Evaluator, Brush } from "three-bvh-csg";
 import CustomShaderMaterial from "three-custom-shader-material/vanilla";
+import terrainVertexShader from "./shaders/terrain/vertex.glsl";
+import terrainFragmentShader from "./shaders/terrain/fragment.glsl";
 import GUI from "lil-gui";
 
 /**
@@ -44,6 +46,8 @@ const material = new CustomShaderMaterial({
     // CSM
     baseMaterial: THREE.MeshStandardMaterial,
     silent: true,
+    vertexShader: terrainVertexShader,
+    fragmentShader: terrainFragmentShader,
 
     // MeshStandardMaterial
     metalness: 0,
