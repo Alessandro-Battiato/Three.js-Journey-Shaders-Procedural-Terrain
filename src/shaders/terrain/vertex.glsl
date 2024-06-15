@@ -2,6 +2,7 @@
 
 float getElevation(vec2 position) {
     float uPositionFrequency = 0.2;
+    float uStrength = 2.0;
 
     float elevation = 0.0;
     elevation += simplexNoise2d(position * uPositionFrequency) / 2.0;
@@ -10,6 +11,7 @@ float getElevation(vec2 position) {
 
     float elevationSign = sign(elevation);
     elevation = pow(abs(elevation), 2.0) * elevationSign; // the abs fixes the issue where, if instead of 2.0 an odd number was given, then the "Holes" on the terrain which will soon have the water would disappear
+    elevation *= uStrength;
 
     return elevation;
 }
