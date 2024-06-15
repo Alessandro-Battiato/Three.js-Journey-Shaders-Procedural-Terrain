@@ -44,13 +44,49 @@ geometry.deleteAttribute("normal");
 geometry.rotateX(-Math.PI * 0.5);
 
 // Material
+debugObject.colorWaterDeep = "#002b3d";
+debugObject.colorWaterSurface = "#66a8ff";
+debugObject.colorSand = "#ffe894";
+debugObject.colorGrass = "#85d534";
+debugObject.colorSnow = "#ffffff";
+debugObject.colorRock = "#bfbd8d";
+
 const uniforms = {
+    uColorWaterDeep: new THREE.Uniform(
+        new THREE.Color(debugObject.colorWaterDeep)
+    ),
+    uColorWaterSurface: new THREE.Uniform(
+        new THREE.Color(debugObject.colorWaterSurface)
+    ),
+    uColorSand: new THREE.Uniform(new THREE.Color(debugObject.colorSand)),
+    uColorGrass: new THREE.Uniform(new THREE.Color(debugObject.colorGrass)),
+    uColorSnow: new THREE.Uniform(new THREE.Color(debugObject.colorSnow)),
+    uColorRock: new THREE.Uniform(new THREE.Color(debugObject.colorRock)),
     uTime: new THREE.Uniform(0),
     uPositionFrequency: new THREE.Uniform(0.2),
     uStrength: new THREE.Uniform(2.0),
     uWarpFrequency: new THREE.Uniform(5),
     uWarpStrength: new THREE.Uniform(0.5),
 };
+
+gui.addColor(debugObject, "colorWaterDeep").onChange(() =>
+    uniforms.uColorWaterDeep.value.set(debugObject.colorWaterDeep)
+);
+gui.addColor(debugObject, "colorWaterSurface").onChange(() =>
+    uniforms.uColorWaterSurface.value.set(debugObject.colorWaterSurface)
+);
+gui.addColor(debugObject, "colorSand").onChange(() =>
+    uniforms.uColorSand.value.set(debugObject.colorSand)
+);
+gui.addColor(debugObject, "colorGrass").onChange(() =>
+    uniforms.uColorGrass.value.set(debugObject.colorGrass)
+);
+gui.addColor(debugObject, "colorSnow").onChange(() =>
+    uniforms.uColorSnow.value.set(debugObject.colorSnow)
+);
+gui.addColor(debugObject, "colorRock").onChange(() =>
+    uniforms.uColorRock.value.set(debugObject.colorRock)
+);
 
 gui.add(uniforms.uPositionFrequency, "value", 0, 1, 0.001).name(
     "uPositionFrequency"
