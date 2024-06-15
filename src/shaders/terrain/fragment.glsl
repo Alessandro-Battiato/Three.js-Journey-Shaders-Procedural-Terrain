@@ -15,6 +15,10 @@ void main() {
     float surfaceWaterMix = smoothstep(- 1.0, - 0.1, vPosition.y);
     color = mix(uColorWaterDeep, uColorWaterSurface, surfaceWaterMix);
 
+    // Sand
+    float sandMix = step(- 0.1, vPosition.y);
+    color = mix(color, uColorSand, sandMix);
+
     // Final color
     csm_DiffuseColor = vec4(color, 1.0);
 }
