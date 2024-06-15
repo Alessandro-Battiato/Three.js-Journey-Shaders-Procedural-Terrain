@@ -7,6 +7,8 @@ uniform vec3 uColorRock;
 
 varying vec3 vPosition;
 
+#include ../includes/simplexNoise2d.glsl
+
 void main() {
     // Color
     vec3 color = vec3(1.0);
@@ -22,6 +24,12 @@ void main() {
     // Grass
     float grassMix = step(- 0.06, vPosition.y);
     color = mix(color, uColorGrass, grassMix);
+
+    // Snow
+    float snowThreshold = 0.45;
+    snowThreshold += simplexNoise2d(vPosition.xz * 15.0) * 0.1; // this operation makes the snow appear realistic
+    float snowMix = step(snowThreshold, vPosition.y);
+    color = mix(color, uColorSnow, snowMix);
 
     // Final color
     csm_DiffuseColor = vec4(color, 1.0);

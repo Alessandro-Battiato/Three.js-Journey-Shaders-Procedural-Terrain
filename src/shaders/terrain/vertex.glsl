@@ -44,4 +44,5 @@ void main() {
 
     // Varyings
     vPosition = csm_Position;
+    vPosition.xz += uTime * 0.2; // this fixes the simplex noise issue regarding the snow by offsetting the position sent to the fragment
 }
